@@ -1,12 +1,10 @@
-﻿@{
-    Layout = null;
-}
+﻿@using System.Data;
+@using school.App_Code;
 
 <!DOCTYPE html>
-@using System.Data;
-@using XmlCrud.App_Code;
 
-@{ 
+
+@{
     SongMethods mySongMethods = new SongMethods();
     string file = @"~\App_Data\playlist.xml";
     DataSet ds = mySongMethods.GetAllSongs(file);
@@ -34,7 +32,7 @@
         }
     </table>
     <div>
-monkey boi is cool
+        monkey boi is cool
     </div>
 </body>
 </html>
