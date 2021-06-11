@@ -7,11 +7,26 @@ namespace school.App_Code
 {
 	public class SongMethods
 	{
+		private DataSet ds = new DataSet("playlist");
 
+		public SongMethods()
+        {
+        }
+
+		public DataRow GetEmptyDataRow()
+        {
+			DataRow dr = ds.Tables["song"].NewRow();
+			return dr;
+        }
+
+		public void CreateSong(DataRow dataRow, string file)
+        {
+			ds.Tables["song"].Rows.Add(dataRow);
+			ds.WriteXml(HttpContext.Current.Server.MapPath(file));
+        }
 
 		public DataSet GetAllSongs(string file)
 		{
-			DataSet ds = new DataSet("playlist");
 
 			DataTable dtSongs = new DataTable("song");
 
