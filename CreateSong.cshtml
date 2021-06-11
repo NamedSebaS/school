@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+@using System.Data;
+@using school.App_Code;
+
+@{
+    SongMethods mySongMethods = Session["playlistClass"] as SongMethods;
+    string file = Session["file"] as string;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @if (IsPost)
+    {
+        DataRow dr = mySongMethods.GetEmptyDataRow();
+        dr[0] = Request.Form["id"];
+        dr[1] = Request.Form["artist"];
+        dr[2] = Request.Form["title"];
+        dr[3] = Request.Form["year"];
+        dr[4] = Request.Form["genre"];
+        dr[5] = Request.Form["time"];
+        dr[6] = Request.Form["file"];
+
+        mySongMethods.CreateSong(dr, file);
+        Response.Redirect(@"~/index.cshtml");
+    }
+</body>
+</html>

@@ -12,7 +12,7 @@
     SongMethods mySongMethods = new SongMethods();
     string file = @"~\App_Data\playlist.xml";
     DataSet ds = mySongMethods.GetAllSongs(file);
-    Session["playlistClass"] = mysongMethods;       // aanpassing 1
+    Session["playlistClass"] = mySongMethods;       // aanpassing 1
     Session["file"] = file;                         // aanpassing 2
 }
 
