@@ -18,24 +18,36 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Monkey</title>
 
 </head>
 
-<body>
+<body class="container">
     Hallo
-    <table>
+    <table class="table-bordered table">
+        <tr>
+            <td scope="col">Artist</td>
+            <td scope="col">Title</td>
+            <td scope="col">Year</td>
+            <td scope="col">Genre</td>
+            <td scope="col">Time</td>
+            <td scope="col">File</td>
+            <td scope="col">Actions</td>
+        </tr>
         @foreach (DataRow dr in ds.Tables["song"].Rows)
         {
-            <tr>
-                <td>@dr["id"]</td>
+            <tr scope="row">
                 <td>@dr["artist"]</td>
                 <td>@dr["title"]</td>
                 <td>@dr["year"]</td>
                 <td>@dr["genre"] </td>
                 <td>@dr["time"]</td>
                 <td>@dr["file"]</td>
+                <td><a href="#" class="btn-danger btn">Delete</a></td>
             </tr>
         }
     </table>
