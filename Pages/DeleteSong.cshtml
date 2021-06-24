@@ -14,14 +14,22 @@
     <title></title>
 </head>
 <body>
-    @if (IsPost)
-    {
-        if (Request.Form["choice"] == "yes")
-        {
-            string id = Request.QueryString["id"];
-            mySongMethods.DeleteSong(id, file);
-        }
+    <form method="post">
+        <input type="radio" id="yes" name="choice" value="yes">
+        <label for="yes">Yes</label><br>
+        <input type="radio" id="no" name="choice" value="no">
+        <label for="no">No</label><br>
+        <input type="submit" value="Submit">
+    </form>
 
+    @if (Request.Form["choice"] == "yes")
+    {
+        string id = Request.QueryString["id"];
+        mySongMethods.DeleteSong(id, file);
+        Response.Redirect(@"~/index.cshtml");
+    }
+    else if (Request.Form["choice"] == "no")
+    {
         Response.Redirect(@"~/index.cshtml");
     }
 </body>

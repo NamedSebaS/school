@@ -7,12 +7,13 @@ namespace school.App_Code
 {
 	public class SongMethods
 	{
-		private DataSet ds = new DataSet("playlist");
+		private DataSet ds;
 
 		public SongMethods()
         {
+			this.ds = new DataSet("playlist");
         }
-
+		
 		public DataRow GetEmptyDataRow()
         {
 			DataRow dr = ds.Tables["song"].NewRow();
@@ -62,5 +63,4 @@ namespace school.App_Code
             }
         }
 	}
-
 }

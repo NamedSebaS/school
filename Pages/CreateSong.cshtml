@@ -14,19 +14,38 @@
     <title></title>
 </head>
 <body>
-    @if (IsPost)
-    {
-        DataRow dr = mySongMethods.GetEmptyDataRow();
-        dr[0] = Request.Form["id"];
-        dr[1] = Request.Form["artist"];
-        dr[2] = Request.Form["title"];
-        dr[3] = Request.Form["year"];
-        dr[4] = Request.Form["genre"];
-        dr[5] = Request.Form["time"];
-        dr[6] = Request.Form["file"];
+    <form method="post">
+        <label for="id">Id:</label><br>
+        <input type="text" id="id" name="id"><br>
+        <label for="artist">Artist:</label><br>
+        <input type="text" id="artist" name="artist"><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="year">Year:</label><br>
+        <input type="text" id="year" name="year"><br>
+        <label for="genre">Genre:</label><br>
+        <input type="text" id="genre" name="genre"><br>
+        <label for="time">Time:</label><br>
+        <input type="text" id="time" name="time"><br>
+        <label for="file">File:</label><br>
+        <input type="text" id="file" name="file"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+           @if (IsPost) { 
 
-        mySongMethods.CreateSong(dr, file);
-        Response.Redirect(@"~/index.cshtml");
-    }
+           DataRow dr = mySongMethods.GetEmptyDataRow();
+            dr[0] = Request.Form["id"];
+            dr[1] = Request.Form["artist"];
+            dr[2] = Request.Form["title"];
+            dr[3] = Request.Form["year"];
+            dr[4] = Request.Form["genre"];
+            dr[5] = Request.Form["time"];
+            dr[6] = Request.Form["file"];
+
+            mySongMethods.CreateSong(dr, file);
+            Response.Redirect(@"~/index.cshtml");
+           }
+
+
 </body>
 </html>

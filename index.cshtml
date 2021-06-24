@@ -3,22 +3,6 @@
 
 
 @{
-@*    DataSet ds = new DataSet("songlist");
-
-    DataTable songs = new DataTable("song");
-
-    DataColumn artist = new DataColumn("artist");
-    DataColumn title = new DataColumn("title");
-    DataColumn year = new DataColumn("year");
-
-    songs.Columns.Add(artist);
-    songs.Columns.Add(title);
-    songs.Columns.Add(year);
-
-    ds.Tables.Add(songs);
-
-    ds.ReadXml(HttpContext.Current.Server.MapPath("App_Data/playlist.xml"));*@
-
     SongMethods mySongMethods = new SongMethods();
     string file = @"~\App_Data\playlist.xml";
     DataSet ds = mySongMethods.GetAllSongs(file);
@@ -69,7 +53,7 @@
     <div>
         <table>
             <tr>
-                <td><a href="~/Pages/CreateSong.cshtml?" class="btn-danger btn">Create</a></td>
+                <td><a href="~/Pages/CreateSong.cshtml" class="btn-danger btn">Create</a></td>
             </tr>
         </table>
     </div>
