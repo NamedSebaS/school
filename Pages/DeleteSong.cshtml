@@ -1,0 +1,28 @@
+﻿@using System.Data;
+@using school.App_Code;
+
+@{
+    SongMethods mySongMethods = Session["playlistClass"] as SongMethods;
+    string file = Session["file"] as string;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    @if (IsPost)
+    {
+        if (Request.Form["choice"] == "yes")
+        {
+            string id = Request.QueryString["id"];
+            mySongMethods.DeleteSong(id, file);
+        }
+
+        Response.Redirect(@"~/index.cshtml");
+    }
+</body>
+</html>

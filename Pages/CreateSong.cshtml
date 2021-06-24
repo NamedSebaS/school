@@ -1,16 +1,12 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-@using System.Data;
+﻿@using System.Data;
 @using school.App_Code;
 
 @{
     SongMethods mySongMethods = Session["playlistClass"] as SongMethods;
     string file = Session["file"] as string;
 }
+
+<!DOCTYPE html>
 
 <html>
 <head>

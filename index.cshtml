@@ -1,14 +1,24 @@
 ﻿@using System.Data;
 @using school.App_Code;
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
 
 @{
+@*    DataSet ds = new DataSet("songlist");
+
+    DataTable songs = new DataTable("song");
+
+    DataColumn artist = new DataColumn("artist");
+    DataColumn title = new DataColumn("title");
+    DataColumn year = new DataColumn("year");
+
+    songs.Columns.Add(artist);
+    songs.Columns.Add(title);
+    songs.Columns.Add(year);
+
+    ds.Tables.Add(songs);
+
+    ds.ReadXml(HttpContext.Current.Server.MapPath("App_Data/playlist.xml"));*@
+
     SongMethods mySongMethods = new SongMethods();
     string file = @"~\App_Data\playlist.xml";
     DataSet ds = mySongMethods.GetAllSongs(file);
@@ -16,20 +26,22 @@
     Session["file"] = file;                         // aanpassing 2
 }
 
+<!DOCTYPE html>
+
 <html>
 <head>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <script src="~/Scripts/jquery-3.0.0.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <meta name="viewport" content="width=device-width" />
-    <title>Monkey</title>
+    <title>C# project</title>
 
 </head>
 
 <body class="container">
-    Hallo
     <table class="table-bordered table">
         <tr>
+            <td scope="col">Number</td>
             <td scope="col">Artist</td>
             <td scope="col">Title</td>
             <td scope="col">Year</td>
@@ -41,18 +53,25 @@
         @foreach (DataRow dr in ds.Tables["song"].Rows)
         {
             <tr scope="row">
+                <td>@dr["id"]</td>
                 <td>@dr["artist"]</td>
                 <td>@dr["title"]</td>
                 <td>@dr["year"]</td>
                 <td>@dr["genre"] </td>
                 <td>@dr["time"]</td>
                 <td>@dr["file"]</td>
-                <td><a href="#" class="btn-danger btn">Delete</a></td>
+                <td><a href="~/Pages/DeleteSong.cshtml?id=@dr["id"]" class="btn-danger btn">Delete</a></td>
             </tr>
+
         }
     </table>
+
     <div>
-        monkey boi is cool
+        <table>
+            <tr>
+                <td><a href="~/Pages/CreateSong.cshtml?" class="btn-danger btn">Create</a></td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
